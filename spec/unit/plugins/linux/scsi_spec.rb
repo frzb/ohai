@@ -38,6 +38,35 @@ SCSI_HOSTS
       expect(@plugin[:scsi][:logical_units]['2:0:0:0'][:type]).to eq("disk")
     end
 
-  end
+    it "should find vendor" do
+      @plugin.run
+      expect(@plugin[:scsi][:logical_units]['2:0:0:0'][:vendor]).to eq("ATA")
+    end
 
+    it "should find model" do
+      @plugin.run
+      expect(@plugin[:scsi][:logical_units]['2:0:0:0'][:model]).to eq("VBOX HARDDISK")
+    end
+
+    it "should find rev" do
+      @plugin.run
+      expect(@plugin[:scsi][:logical_units]['2:0:0:0'][:rev]).to eq("1.0")
+    end
+
+    it "should find dev" do
+      @plugin.run
+      expect(@plugin[:scsi][:logical_units]['2:0:0:0'][:dev]).to eq("/dev/sda")
+    end
+
+    it "should find dir" do
+      @plugin.run
+      expect(@plugin[:scsi][:logical_units]['2:0:0:0'][:dir]).to eq("/sys/bus/scsi/devices/2:0:0:0")
+    end
+
+    it "should find symlink" do
+      @plugin.run
+      expect(@plugin[:scsi][:logical_units]['2:0:0:0'][:symlink]).to eq("/sys/devices/pci0000:00/0000:00:0d.0/ata3/host2/target2:0:0/2:0:0:0")
+    end
+ 
+  end
 end
